@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "course":"MGT1101",
+        "credit": "3 CR.",
+        "name": "Introduction To Business" 
+    },
+    {
+        "id": 2,
+        "course":"IT2231",
+        "credit": "3 CR.",
+        "name": "Information Technology" 
+    },
+    {
+        "id": 3,
+        "course":"IT2130",
+        "credit": "3 CR.",
+        "name": "Systems Science" 
+    },
+    {
+        "id": 4,
+        "course":"DA1121",
+        "credit": "3 CR.",
+        "name": "Basic Mathematics and Statistics" 
+    },
+    {
+        "id": 5,
+        "course":"CS1201",
+        "credit": "3 CR.",
+        "name": "Basic Mathematics and Statistics" 
+    },
+    {
+        "id": 6,
+        "course":"BG1001",
+        "credit": "3 CR.",
+        "name": "English I" 
+    },
+    {
+        "id": 7,
+        "course":"BG14031",
+        "credit": "0 CR.",
+        "name": "Professional Ethics Seminar I" 
+    }
+]
