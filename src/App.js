@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Navbar } from "react-bootstrap";
 import './App.css';
-// import BorderWrapper from 'react-border-wrapper'
-import courses from "./Course/courses";
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import List from "./List";
 import useLocalStorage from 'react-localstorage-hook'
-// import data from './data/data.json'
+
 
 function App() {
   const yearRef= useRef();
@@ -34,18 +35,6 @@ function App() {
       {idSem : "s003", nameSem: 3},
     ];
   
-    const gradeList = [
-      {idGrade: "g001", grade: "A"},
-      {idGrade: "g002", grade: "A-"},
-      {idGrade: "g003", grade: "B+"},
-      {idGrade: "g004", grade: "B"},
-      {idGrade: "g005", grade: "B-"},
-      {idGrade: "g006", grade: "C+"},
-      {idGrade: "g007", grade: "C"},
-      {idGrade: "g008", grade: "C-"},
-      {idGrade: "g009", grade: "D"},
-    ];
-  
     const idList = [
       {id: "i001", name: 2231 , subject: "Information Technology"},
       {id: "i002", name: 2130, subject: "Systems Science"},
@@ -70,7 +59,7 @@ function App() {
       sId: sId,
       name: subject.name,
       subject: subjectRef.current.value,
-      grade: gradeRef.current.value
+      grade: gradeRef.current.value,
     };
   
     dataItems.push(subjectObj);
@@ -89,11 +78,7 @@ function App() {
     })
   
     const optionSem = semList.map ( v=> {
-      return <option value={v.idSem} key={v.idSem}>{v.nameSem}</option>
-    })
-  
-    const optionGrade = gradeList.map ( v=> {
-      return <option value={v.idGrade} key={v.idGrade}>{v.grade}</option>
+      return <option value={v.idSem} key={v.id}>{v.nameSem}</option>
     })
   
     const optionID = idList.map (v => {
@@ -102,83 +87,77 @@ function App() {
   
     
     return (
-        <Container >
-        <img src="/image/vms-2.jpg" alt=""/>
-        <h1 className="left-alignment"> ADD DESIRED COURSES : </h1>
-        <Row>
-          <Col xs={5} >
-  
-          <Form className="left-alignment"> 
-          <div className="side-by-side">
-            <Form.Group className="mb-3" controlId="formYear">
-                <Form.Label>Year</Form.Label>
-                <Form.Select 
-                  aria-label="Default select example"
-                  style={{backgroundColor:'#F5F5F5'}} 
-                  ref={yearRef} 
-                >
-                  {optionYear}
-                </Form.Select>
-              </Form.Group>
+    <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
+      <Container>
+        <img src="/image/logo.png"></img>
+          <div className="wrapper" style={{ display: 'block', width: 1000}}>
+            <Tabs className="center-alignment" defaultActiveKey="second">
+              <Tab eventKey="first" title="Estimate Grade" >
+                <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>Add desired Courses</h3>
+                  <div className="center-alignment" style={{backgroundColor:"#FAFAFA", marginRight:"10px", borderRadius:"15px"}}>
+                    <Row>
+                      <Col xs={12} >
+                        <Form className="left-alignment"> 
+                          <Form.Group className="mb-3" controlId="formYear">
+                            <Form.Label>Year</Form.Label>
+                              <Form.Select 
+                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}} ref={yearRef} >
+                                {optionYear}
+                              </Form.Select>
+                            </Form.Group>
                     
-            <Form.Group className="mb-3" controlId="formSem">
-                <Form.Label>Semester</Form.Label>
-                <Form.Select 
-                  aria-label="Default select example" 
-                  style={{backgroundColor:'#F5F5F5'}}
-                  ref={semRef} 
-                >
-                  {optionSem}
-                </Form.Select>  
-              </Form.Group>
-              </div>
-  
-              <Form.Group className="mb-3" controlId="formYear">
-                <Form.Label>Course ID</Form.Label>
-                <Form.Select 
-                  aria-label="Default select example" 
-                  style={{backgroundColor:'#F5F5F5'}}
-                  ref={idRef} 
-                  onChange={productChange}
-                >
-                  {optionID}
-                  </Form.Select>
-              </Form.Group>
-  
-           
-            <Form.Group className="mb-3" controlId="formSubject">
-                <Form.Label> Course Name  </Form.Label>
-                <Form.Control style={{backgroundColor:'#F5F5F5'}} type="text" placeholder="Add desired courses " ref={subjectRef}/>
-              </Form.Group>
-  
-              <Form.Group className="mb-3" controlId="formElective">
-                <Form.Label> Free Elective </Form.Label>
-                <Form.Control style={{backgroundColor:'#F5F5F5'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
-              </Form.Group>
+                          <Form.Group className="mb-3" controlId="formSem">
+                            <Form.Label>Semester</Form.Label>
+                              <Form.Select 
+                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}}ref={semRef} >
+                                {optionSem}
+                              </Form.Select>  
+                          </Form.Group>
+            
+                        <Form.Group className="mb-3" controlId="formYear">
+                          <Form.Label>Course ID</Form.Label>
+                            <Form.Select 
+                              aria-label="Default select example" 
+                              style={{backgroundColor:'#C1C1C1'}}
+                              ref={idRef} 
+                              onChange={productChange}
+                            >
+                            {optionID}
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formSubject">
+                            <Form.Label> Course Name  </Form.Label>
+                            <Form.Control style={{backgroundColor:'#C1C1C1'}} type="text" placeholder="Add desired courses " ref={subjectRef}/>
+                          </Form.Group>
               
-            <Form.Group className="mb-3" controlId="formGrade">
-                <Form.Label>Grade</Form.Label>
-                <Form.Select 
-                  aria-label="Default select example" 
-                  style={{backgroundColor:'#F5F5F5'}}
-                  ref={gradeRef} 
-                >
-                  {optionGrade}
-                  </Form.Select>
-            </Form.Group> 
+                          <Form.Group className="mb-3" controlId="formElective">
+                            <Form.Label> Free Elective </Form.Label>
+                            <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
+                          </Form.Group>
+           
+                          <Form.Group className="mb-3" controlId="formGrade">
+                              <Form.Label>Grade</Form.Label>
+                              <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}/>
+                          </Form.Group> 
   
-              <Button className="button-size" variant="outline-dark" size ="60px" onClick={addItem }>
-                Add
-              </Button>
-  
-              </Form>
-            </Col>
-  
-            <Col>
-                <courses data={dataItems} setDataItems={setDataItems}/>
-            </Col>
-          </Row>
+                        <Button className="button-size" backgroundColor="#87CEEB" onClick={addItem }>
+                          Add
+                        </Button>
+                      </Form>
+                    </Col>
+                  </Row>
+              </div>
+              </Tab>
+                <Tab eventKey="second" title="Grade List">
+                  <Col>
+                    <List data={dataItems} setDataItems={setDataItems}/>
+                  </Col>
+              </Tab>
+            </Tabs>
+          </div>
         </Container>
+        </div>
          );
  
     }

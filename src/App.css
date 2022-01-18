@@ -36,9 +36,16 @@
 }
 
 .left-alignment {
-  margin-left: 43px;
+  margin-left: 10px;
+  margin-right: 10px;
   position: relative;
 }
+
+.center-alignment {
+  margin-left: 350px;
+  position: relative;
+}
+
 
 .form-control {
   width: 100%;
@@ -46,16 +53,17 @@
 
 
 img{
-  height: 80px;
-  width: 600px;
-  margin-bottom: 5vh;
+  height: 150px;
+  width: 150px;
+  margin-left: 600px;
+  text-align: center;
   display: flex;
   justify-content: left;
   align-Items: left;
 }
 
 h1{
-  font-size: 20px;
+  font-size: 2px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: 	#575555;
   margin-top: 20px;
@@ -63,9 +71,14 @@ h1{
 }
 
 .button-size {
-  width: 100px;
-  height: 35px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  width: 600px;
+  height: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
+
 
 @keyframes App-logo-spin {
   from {
