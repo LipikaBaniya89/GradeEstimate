@@ -4,8 +4,9 @@ import { Container, Row, Col, Form, Button, Navbar } from "react-bootstrap";
 import './App.css';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import List from "./List";
+import Grade from "./Grade";
 import useLocalStorage from 'react-localstorage-hook'
+import List from "./List";
 
 function App() {
   const yearRef= useRef();
@@ -35,7 +36,7 @@ function App() {
     ];
   
     const idList = [
-      {id: "i001", name: 2231 , subject: "Information Technology"},
+      {id: "i001", name: 1001 , subject: "BG 1001 English"},
       {id: "i002", name: 2130, subject: "Systems Science"},
       {id: "i003", name: 1121, subject: "Basic Mathematics and Statistics"},
       {id: "i004", name: 1201, subject: "Computer Programming 1"},
@@ -77,7 +78,7 @@ function App() {
     })
   
     const optionSem = semList.map ( v=> {
-      return <option value={v.idSem} key={v.id}>{v.nameSem}</option>
+      return <option value={v.id} key={v.id}>{v.nameSem}</option>
     })
   
     const optionID = idList.map (v => {
@@ -86,21 +87,21 @@ function App() {
   
     
     return (
-    <div style={{backgroundcolor: "#F5F5F5", paddingBottom:"30px"}}>
+    <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
       <Container>
         <img src="/image/logo.png"></img>
           <div className="wrapper" style={{ display: 'block', width: 1000}}>
             <Tabs className="center-alignment" defaultActiveKey="second">
-              <Tab eventKey="first" title="Estimate Grade" >
+              <Tab eventKey="first" title="Add Grade" >
                 <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>Add desired Courses</h3>
-                  <div className="center-alignment" style={{backgroundColor:"#F5F5F5", marginRight:"10px", borderRadius:"15px"}}>
+                  <div className="center-alignment" style={{backgroundColor:"#FFFFFF", marginRight:"10px", borderRadius:"15px"}}>
                     <Row>
                       <Col xs={12} >
                         <Form className="left-alignment"> 
                           <Form.Group className="mb-3" controlId="formYear">
                             <Form.Label>Year</Form.Label>
                               <Form.Select 
-                                aria-label="Default select example" style={{backgroundcolor:'#C1C1C1'}} ref={yearRef} >
+                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}} ref={yearRef} >
                                 {optionYear}
                               </Form.Select>
                             </Form.Group>
@@ -108,7 +109,7 @@ function App() {
                           <Form.Group className="mb-3" controlId="formSem">
                             <Form.Label>Semester</Form.Label>
                               <Form.Select 
-                                aria-label="Default select example" style={{backgroundcolor:'#C1C1C1'}}ref={semRef} >
+                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}}ref={semRef} >
                                 {optionSem}
                               </Form.Select>  
                           </Form.Group>
@@ -117,7 +118,7 @@ function App() {
                           <Form.Label>Course ID</Form.Label>
                             <Form.Select 
                               aria-label="Default select example" 
-                              style={{backgroundcolor:'#C1C1C1'}}
+                              style={{backgroundColor:'#C1C1C1'}}
                               ref={idRef} 
                               onChange={productChange}
                             >
@@ -127,20 +128,20 @@ function App() {
 
                         <Form.Group className="mb-3" controlId="formSubject">
                             <Form.Label> Course Name  </Form.Label>
-                            <Form.Control style={{backgroundcolor:'#C1C1C1'}} type="text" placeholder="Add desired courses " ref={subjectRef}/>
+                            <Form.Control style={{backgroundColor:'#C1C1C1'}} type="text" placeholder="Add desired courses " ref={subjectRef}/>
                           </Form.Group>
               
                           <Form.Group className="mb-3" controlId="formElective">
                             <Form.Label> Free Elective </Form.Label>
-                            <Form.Control style={{backgroundcolor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
+                            <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
                           </Form.Group>
            
                           <Form.Group className="mb-3" controlId="formGrade">
                               <Form.Label>Grade</Form.Label>
-                              <Form.Control style={{backgroundcolor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}/>
+                              <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}/>
                           </Form.Group> 
   
-                        <Button className="button-size" backgroundcolor="#87CEEB" onClick={addItem }>
+                        <Button className="button-size" backgroundColor="#87CEEB" onClick={addItem }>
                           Add
                         </Button>
                       </Form>
@@ -148,10 +149,15 @@ function App() {
                   </Row>
               </div>
               </Tab>
-                <Tab eventKey="second" title="Grade List">
+              <Tab eventKey="second" title="List of Subjects">
                   <Col>
-                    <div><List/></div>
-                    {/* <List data={dataItems} setDataItems={setDataItems}/> */}
+                  <div><List/></div>
+                    
+                  </Col>
+              </Tab>
+                <Tab eventKey="third" title="Grade Estimation">
+                  <Col>
+                    <Grade data={dataItems} setDataItems={setDataItems}/>
                   </Col>
               </Tab>
             </Tabs>
