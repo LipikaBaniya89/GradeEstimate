@@ -89,7 +89,7 @@ function App() {
     return (
     <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
       <Container>
-        <img src="/image/logo.png"></img>
+        <img src="/img/logo.png"></img>
           <div className="wrapper" style={{ display: 'block', width: 1000}}>
             <Tabs className="center-alignment" defaultActiveKey="second">
               <Tab eventKey="first" title="Add Grade" >

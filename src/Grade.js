@@ -82,7 +82,7 @@ function Grade({data, setDataItems}) {
             <Container className="center-alignment">
                 <Row>
                     <Col>
-                    <h3 style={{paddingTop:"20px", paddingBottom:"10px"}}>Estimate Grade</h3>
+                    <h3 style={{paddingTop:"20px", paddingBottom:"10px"}}>ESTIMATE GRADE</h3>
                     </Col>
                 </Row>
                 <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
