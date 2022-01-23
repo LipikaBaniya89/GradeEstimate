@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import data from './data/data.json'
+
 
 const styles = {
     textCenter: {textAlign: 'center'},
@@ -353,7 +353,3 @@ class List extends Component {
 }
 
 export default List
-
-       {/* <h3> {dataDetail.code}</h3> 
-                                <p>{dataDetail.semester}</p>
-                                <p> {dataDetail.name}</p> */}

@@ -1,0 +1,91 @@
+{
+    "faculty": [
+        {
+            "sem":"SEMESTER 2/2018",
+            "code" : "MGT 1101",
+            "name" : "INTRODUCTION TO BUSINESS",
+            "subjects": [
+                {
+                    "id"   : 1,
+                    "grade": "A",
+                    "credit" : "3 Cr "
+                },
+                {
+                    "id"   : 2,
+                    "code" : "IT 2231 : ",
+                    "name" : "INFORMATION TECHNOLOGY",
+                    "credit" : " 3 Cr "
+                },
+                {
+                    "id"   : 3,
+                    "code" : "IT 2130 : ",
+                    "name" : "SYSTEMS SCIENCE",
+                    "credit" : " 3 Cr "
+                },
+                {
+                    "id"   : 4,
+                    "code" : "DA 1121 : ",
+                    "name" : "BASIC MATHEMATICS AND STATICTICS",
+                    "credit" : " 3 Cr "
+                },
+                {
+                    
+                    "id"   : 5,
+                    "code" : "BG 1001 : ",
+                    "name" : "ENGLISH I ",
+                    "credit" : " 3 Cr "
+
+                },
+                {
+                    "id"   : 5,
+                    "code" : "CS 1201 : ",
+                    "name" : "COMPUTER PROGRAMMING I ",
+                    "credit" : "3 Cr"
+                }
+            ]
+        },
+        {
+            "sem": "SEMESTER 1/2019",
+            "code" : "IT 2230",
+            "name" : "INFORMATION STRUCTURES",
+            "details" : [
+            {
+                "id"   : 6,
+               
+                "credit" : "3 Cr"
+            },
+            {
+                "id"   : 7,
+                "code" : "IT 2220 : ",
+                "name" : "COMPUTER SYSTEM CONCEPTS",
+                "credit" : "3 Cr"
+            },
+            {
+                "id"   : 8,
+                "code" : "IT 1251 : ",
+                "name" : "BUSINESS SYSTEMS",
+                "credit" : "3 Cr"
+            },
+            {
+                "id"   : 9,
+                "code" : "GE 2101 : ",
+                "name" : "WORLD CIVILIZATION",
+                "credit" : "3 Cr"
+            },
+            {
+                "id"   : 10,
+                "code" : "BG 1002 : ",
+                "name" : "ENGLISH II ",
+                "credit" : "3 Cr"
+            },
+            {
+                "id"   : 11,
+                "code" : "DA 2103 : ",
+                "name" : "PRINCIPLE OF STATISTICS",
+                "credit" : "3 Cr"
+            }
+        ]
+    }
+
+    ]
+}

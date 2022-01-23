@@ -7,6 +7,9 @@ import Tab from 'react-bootstrap/Tab';
 import Grade from "./Grade";
 import useLocalStorage from 'react-localstorage-hook'
 import List from "./List";
+import jsonData from './details.json';
+import React, {Component} from 'react';
+import { render } from "@testing-library/react";
 
 function App() {
   const yearRef= useRef();
@@ -55,9 +58,10 @@ function App() {
   
     var subjectObj = {
       year: yearRef.current.value,
-      sem: semRef.current.value,
-      sId: sId,
-      name: subject.name,
+      // sem: semRef.current.value,
+      // sId: sId,
+      // name: subject.name,
+      id: idRef.current.value,
       subject: subjectRef.current.value,
       grade: gradeRef.current.value,
     };
@@ -84,88 +88,191 @@ function App() {
     const optionID = idList.map (v => {
       return <option value={v.id} key={v.id}>{v.name}</option>
     })
-  
-    
-    return (
-    <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
-      <Container>
-        <img src="/img/logo.png"></img>
-          <div className="wrapper" style={{ display: 'block', width: 1000}}>
-            <Tabs className="center-alignment" defaultActiveKey="second">
-              <Tab eventKey="first" title="Add Grade" >
-                <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>Add desired Courses</h3>
-                  <div className="center-alignment" style={{backgroundColor:"#FFFFFF", marginRight:"10px", borderRadius:"15px"}}>
-                    <Row>
-                      <Col xs={12} >
-                        <Form className="left-alignment"> 
-                          <Form.Group className="mb-3" controlId="formYear">
-                            <Form.Label>Year</Form.Label>
-                              <Form.Select 
-                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}} ref={yearRef} >
-                                {optionYear}
-                              </Form.Select>
-                            </Form.Group>
-                    
-                          <Form.Group className="mb-3" controlId="formSem">
-                            <Form.Label>Semester</Form.Label>
-                              <Form.Select 
-                                aria-label="Default select example" style={{backgroundColor:'#C1C1C1'}}ref={semRef} >
-                                {optionSem}
-                              </Form.Select>  
-                          </Form.Group>
-            
-                        <Form.Group className="mb-3" controlId="formYear">
-                          <Form.Label>Course ID</Form.Label>
-                            <Form.Select 
-                              aria-label="Default select example" 
-                              style={{backgroundColor:'#C1C1C1'}}
-                              ref={idRef} 
-                              onChange={productChange}
-                            >
-                            {optionID}
-                            </Form.Select>
-                        </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formSubject">
-                            <Form.Label> Course Name  </Form.Label>
-                            <Form.Control style={{backgroundColor:'#C1C1C1'}} type="text" placeholder="Add desired courses " ref={subjectRef}/>
-                          </Form.Group>
-              
-                          <Form.Group className="mb-3" controlId="formElective">
-                            <Form.Label> Free Elective </Form.Label>
-                            <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
-                          </Form.Group>
-           
-                          <Form.Group className="mb-3" controlId="formGrade">
-                              <Form.Label>Grade</Form.Label>
-                              <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}/>
-                          </Form.Group> 
+    const details = jsonData.faculty
+
+
+    class App extends Component {
+      constructor (props) {
+          super (props);
+          this.state = { 
+            json : [
+              {
+                "sem":"SEMESTER 2/2018",
+                "code" : "MGT 1101",
+                "name" : "INTRODUCTION TO BUSINESS",
+                "details": [
+                    {
+                        "id"   : 1, 
+                        "credit" : "3 Cr "
+                    },
+                    {
+                        "id"   : 2,
+                        "code" : "IT 2231 : ",
+                        "name" : "INFORMATION TECHNOLOGY",
+                        "credit" : " 3 Cr "
+                    },
+                    {
+                        "id"   : 3,
+                        "code" : "IT 2130 : ",
+                        "name" : "SYSTEMS SCIENCE",
+                        "credit" : " 3 Cr "
+                    },
+                    {
+                        "id"   : 4,
+                        "code" : "DA 1121 : ",
+                        "name" : "BASIC MATHEMATICS AND STATICTICS",
+                        "credit" : " 3 Cr "
+                    },
+                    {
+                        
+                        "id"   : 5,
+                        "code" : "BG 1001 : ",
+                        "name" : "ENGLISH I ",
+                        "credit" : " 3 Cr "
+    
+                    },
+                    {
+                        "id"   : 5,
+                        "code" : "CS 1201 : ",
+                        "name" : "COMPUTER PROGRAMMING I ",
+                        "credit" : "3 Cr"
+                    }
+                ]
+            },
+            {
+                "sem": "SEMESTER 1/2019",
+                "code" : "IT 2230",
+                "name" : "INFORMATION STRUCTURES",
+                "details" : [
+                {
+                    "id"   : 6,
+                   
+                    "credit" : "3 Cr"
+                },
+                {
+                    "id"   : 7,
+                    "code" : "IT 2220 : ",
+                    "name" : "COMPUTER SYSTEM CONCEPTS",
+                    "credit" : "3 Cr"
+                },
+                {
+                    "id"   : 8,
+                    "code" : "IT 1251 : ",
+                    "name" : "BUSINESS SYSTEMS",
+                    "credit" : "3 Cr"
+                },
+                {
+                    "id"   : 9,
+                    "code" : "GE 2101 : ",
+                    "name" : "WORLD CIVILIZATION",
+                    "credit" : "3 Cr"
+                },
+                {
+                    "id"   : 10,
+                    "code" : "BG 1002 : ",
+                    "name" : "ENGLISH II ",
+                    "credit" : "3 Cr"
+                },
+                {
+                    "id"   : 11,
+                    "code" : "DA 2103 : ",
+                    "name" : "PRINCIPLE OF STATISTICS",
+                    "credit" : "3 Cr"
+                }
+            ]
+        }
+            ]
+
+          }
+      }
+    }
   
-                        <Button className="button-size" backgroundColor="#87CEEB" onClick={addItem }>
-                          Add
-                        </Button>
-                      </Form>
-                    </Col>
-                  </Row>
+    render(); {
+      return (
+        <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
+          <Container>
+            <img src="/img/logo.png"></img>
+              <div className="wrapper" style={{ display: 'block', width: 1000}}>
+                <Tabs className="center-alignment" defaultActiveKey="second">
+                  <Tab eventKey="first" title="Add Grade" >
+                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>Add desired Courses</h3>
+                      <div className="center-alignment" style={{backgroundColor:"#FFFFFF", marginRight:"10px", borderRadius:"15px"}}>
+                        <Row>
+                          <Col xs={12} >
+                            <Form className="left-alignment"> 
+                              <Form.Group className="mb-3" controlId="formYear">
+                                <Form.Label>Year</Form.Label>
+                                  <Form.Select 
+                                    aria-label="Default select example" style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={yearRef} >
+                                    {details.map (v => (<option key={v.id} value={v.id}>{v.sem}</option>))}
+                                    {/* {optionYear} */}
+                                  </Form.Select>
+                                </Form.Group>
+                
+                            <Form.Group className="mb-3" controlId="formYear">
+                              <Form.Label>Course ID</Form.Label>
+                                <Form.Select 
+                                  aria-label="Default select example" 
+                                  style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}
+                                  ref={idRef} >
+                                  {details.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                 {/* onChange={productChange} */}
+                                 {/* {optionID} */}
+                                </Form.Select>
+                            </Form.Group>
+    
+                            <Form.Group className="mb-3" controlId="formSubject">
+                                <Form.Label> Course Name  </Form.Label>
+                                <Form.Select aria-label="Default select example" 
+                                  style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={subjectRef}>
+                                {details.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                </Form.Select>
+                              </Form.Group>
+                  
+                              <Form.Group className="mb-3" controlId="formElective">
+                                <Form.Label> Free Elective </Form.Label>
+                                <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
+                              </Form.Group>
+               
+                              <Form.Group className="mb-3" controlId="formGrade">
+                                  <Form.Label>Grade</Form.Label>
+                                  <Form.Select style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}>
+                                    {/* {details.map ((grade, index) => {
+                                      if (grade.credit == this.state.json)
+                                      return grade.details.map((credits, index) => {
+                                        return <option>{credits.credit}</option>
+                                      }) */}
+                                    {/* })} */}
+                                    </Form.Select>
+                              </Form.Group> 
+      
+                            <Button className="button-size" backgroundColor="#87CEEB" onClick={addItem }>
+                              Add
+                            </Button>
+                          </Form>
+                        </Col>
+                      </Row>
+                  </div>
+                  </Tab>
+                  <Tab eventKey="second" title="Study Plan">
+                      <Col>
+                      <div><List/></div>
+                        
+                      </Col>
+                  </Tab>
+                    <Tab eventKey="third" title="Grade Estimation">
+                      <Col>
+                        <Grade data={dataItems} setDataItems={setDataItems}/>
+                      </Col>
+                  </Tab>
+                </Tabs>
               </div>
-              </Tab>
-              <Tab eventKey="second" title="List of Subjects">
-                  <Col>
-                  <div><List/></div>
-                    
-                  </Col>
-              </Tab>
-                <Tab eventKey="third" title="Grade Estimation">
-                  <Col>
-                    <Grade data={dataItems} setDataItems={setDataItems}/>
-                  </Col>
-              </Tab>
-            </Tabs>
-          </div>
-        </Container>
-        </div>
-         );
- 
+            </Container>
+            </div>
+             );
+
+    }
     }
       export default App;
      

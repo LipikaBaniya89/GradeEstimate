@@ -1,13 +1,12 @@
 import {useState, useRef, useEffect, Component} from "react";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
-
 import './App.css'
 
     
 const styles = {
-    textCenter: {textAlign: 'center'},
-    textRight: {textAlign: 'right'},
-    textLeft: {textAlign:'left'}
+    textCenter: {textAlign: 'center',  fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'},
+    textRight: {textAlign:'right'},
+    textLeft: {textAlign:'left', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}
 };
 
 function Grade({data, setDataItems}) {
@@ -56,8 +55,7 @@ function Grade({data, setDataItems}) {
             return (
                 <tr key={i}>
                     <td style={styles.textLeft}>{v.year}</td>
-                    <td style={styles.textLeft}>{v.sem}</td>
-                    <td style={styles.textLeft}>{v.name}</td>
+                    {/* <td style={styles.textLeft}>{v.name}</td> */}
                     <td style={styles.textLeft}>{v.subject}</td>
                     <td style={styles.textLeft}>{v.grade}</td>
                 </tr>
@@ -87,7 +85,7 @@ function Grade({data, setDataItems}) {
                 </Row>
                 <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
                     <Table  style={{width:"650px"}}>
-                    <thead style={{backgroundColor:'#C1C1C1', color:"#000000", borderRadius:"15px"}}>
+                    {/* <thead style={{backgroundColor:'#C1C1C1', color:"#000000", borderRadius:"15px"}}>
                         <tr>
                             <th>Year</th>
                             <th>Semester</th>
@@ -95,15 +93,15 @@ function Grade({data, setDataItems}) {
                             <th>Course Name</th>
                             <th>Grade</th> 
                         </tr>
-                    </thead>
-                    <tbody>{dataRows}</tbody>
-                    <tfoot>
-                        <tr>
-                            <th colSpan={3}></th>
+                    </thead> */}
+                    <thead>
+                        <tr> 
                             <th style={styles.textLeft}>CGPA</th>
                             <th style={styles.textLeft}>{(formatNumber(dataTotal))}</th>
+                            <th colSpan={3}></th>
                         </tr>
-                    </tfoot>
+                    </thead>
+                    <tbody>{dataRows}</tbody>
                 </Table>
                 </div>
                 <Col>
