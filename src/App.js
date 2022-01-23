@@ -8,18 +8,14 @@ import Grade from "./Grade";
 import useLocalStorage from 'react-localstorage-hook'
 import List from "./List";
 import jsonData from './details.json';
-import React, {Component} from 'react';
-import { render } from "@testing-library/react";
 
 function App() {
   const yearRef= useRef();
-  const semRef = useRef();
   const idRef=useRef();
   const subjectRef=useRef();
   const freeRef=useRef();
   const gradeRef=useRef();
 
-  // const [dataItems, setDataItems] =useState([]);
   const [dataItems, setDataItems] = useLocalStorage("dataItems",[]);
   
     const yearList = [
@@ -58,9 +54,6 @@ function App() {
   
     var subjectObj = {
       year: yearRef.current.value,
-      // sem: semRef.current.value,
-      // sId: sId,
-      // name: subject.name,
       id: idRef.current.value,
       subject: subjectRef.current.value,
       grade: gradeRef.current.value,
@@ -68,127 +61,17 @@ function App() {
   
     dataItems.push(subjectObj);
     setDataItems([...dataItems]);
-    //setDataItems(dataItems);
-  };
+    };
+
   
     const productChange = (e) => {
-      const sId= idRef.current.value;
-      const subject=idList.find((e) => e.id == sId);
-      subjectRef.current.value= subject.subject
+      // const sId= idRef.current.value;
+      // const subject=idList.find((e) => e.id == sId);
+      // subjectRef.current.value= subject.subject
     }
-  
-    const optionYear= yearList.map ( v=> {
-      return <option value={v.id} key={v.id}>{v.name}</option>
-    })
-  
-    const optionSem = semList.map ( v=> {
-      return <option value={v.id} key={v.id}>{v.nameSem}</option>
-    })
-  
-    const optionID = idList.map (v => {
-      return <option value={v.id} key={v.id}>{v.name}</option>
-    })
 
     const details = jsonData.faculty
-
-
-    class App extends Component {
-      constructor (props) {
-          super (props);
-          this.state = { 
-            json : [
-              {
-                "sem":"SEMESTER 2/2018",
-                "code" : "MGT 1101",
-                "name" : "INTRODUCTION TO BUSINESS",
-                "details": [
-                    {
-                        "id"   : 1, 
-                        "credit" : "3 Cr "
-                    },
-                    {
-                        "id"   : 2,
-                        "code" : "IT 2231 : ",
-                        "name" : "INFORMATION TECHNOLOGY",
-                        "credit" : " 3 Cr "
-                    },
-                    {
-                        "id"   : 3,
-                        "code" : "IT 2130 : ",
-                        "name" : "SYSTEMS SCIENCE",
-                        "credit" : " 3 Cr "
-                    },
-                    {
-                        "id"   : 4,
-                        "code" : "DA 1121 : ",
-                        "name" : "BASIC MATHEMATICS AND STATICTICS",
-                        "credit" : " 3 Cr "
-                    },
-                    {
-                        
-                        "id"   : 5,
-                        "code" : "BG 1001 : ",
-                        "name" : "ENGLISH I ",
-                        "credit" : " 3 Cr "
-    
-                    },
-                    {
-                        "id"   : 5,
-                        "code" : "CS 1201 : ",
-                        "name" : "COMPUTER PROGRAMMING I ",
-                        "credit" : "3 Cr"
-                    }
-                ]
-            },
-            {
-                "sem": "SEMESTER 1/2019",
-                "code" : "IT 2230",
-                "name" : "INFORMATION STRUCTURES",
-                "details" : [
-                {
-                    "id"   : 6,
-                   
-                    "credit" : "3 Cr"
-                },
-                {
-                    "id"   : 7,
-                    "code" : "IT 2220 : ",
-                    "name" : "COMPUTER SYSTEM CONCEPTS",
-                    "credit" : "3 Cr"
-                },
-                {
-                    "id"   : 8,
-                    "code" : "IT 1251 : ",
-                    "name" : "BUSINESS SYSTEMS",
-                    "credit" : "3 Cr"
-                },
-                {
-                    "id"   : 9,
-                    "code" : "GE 2101 : ",
-                    "name" : "WORLD CIVILIZATION",
-                    "credit" : "3 Cr"
-                },
-                {
-                    "id"   : 10,
-                    "code" : "BG 1002 : ",
-                    "name" : "ENGLISH II ",
-                    "credit" : "3 Cr"
-                },
-                {
-                    "id"   : 11,
-                    "code" : "DA 2103 : ",
-                    "name" : "PRINCIPLE OF STATISTICS",
-                    "credit" : "3 Cr"
-                }
-            ]
-        }
-            ]
-
-          }
-      }
-    }
   
-    render(); {
       return (
         <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
           <Container>
@@ -196,54 +79,62 @@ function App() {
               <div className="wrapper" style={{ display: 'block', width: 1000}}>
                 <Tabs className="center-alignment" defaultActiveKey="second">
                   <Tab eventKey="first" title="Add Grade" >
-                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>Add desired Courses</h3>
-                      <div className="center-alignment" style={{backgroundColor:"#FFFFFF", marginRight:"10px", borderRadius:"15px"}}>
+                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>ADD DESIRED COURSES</h3>
+                      <div className="center-alignment" style={{backgroundColor:"#FAFAFA", marginRight:"10px", borderRadius:"15px"}}>
                         <Row>
                           <Col xs={12} >
                             <Form className="left-alignment"> 
                               <Form.Group className="mb-3" controlId="formYear">
-                                <Form.Label>Year</Form.Label>
+                                <Form.Label>YEAR</Form.Label>
                                   <Form.Select 
                                     aria-label="Default select example" style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={yearRef} >
                                     {details.map (v => (<option key={v.id} value={v.id}>{v.sem}</option>))}
-                                    {/* {optionYear} */}
                                   </Form.Select>
                                 </Form.Group>
                 
                             <Form.Group className="mb-3" controlId="formYear">
-                              <Form.Label>Course ID</Form.Label>
+                              <Form.Label>COURSE ID</Form.Label>
                                 <Form.Select 
                                   aria-label="Default select example" 
                                   style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}
-                                  ref={idRef} >
-                                  {details.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
-                                 {/* onChange={productChange} */}
-                                 {/* {optionID} */}
+                                  ref={idRef} 
+                                  onChange={productChange}>
+                                  {details[0].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[1].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[2].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[3].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[4].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[5].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[6].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                  {details[7].subjects.map (v => (<option key={v.id} value={v.id}>{v.code}</option>))}
+                                 
                                 </Form.Select>
                             </Form.Group>
     
                             <Form.Group className="mb-3" controlId="formSubject">
-                                <Form.Label> Course Name  </Form.Label>
+                                <Form.Label> COURSE NAME </Form.Label>
                                 <Form.Select aria-label="Default select example" 
                                   style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={subjectRef}>
-                                {details.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[0].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[1].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[2].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[3].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[4].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[5].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[6].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
+                                  {details[7].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
                                 </Form.Select>
                               </Form.Group>
                   
-                              <Form.Group className="mb-3" controlId="formElective">
+                              {/* <Form.Group className="mb-3" controlId="formElective">
                                 <Form.Label> Free Elective </Form.Label>
                                 <Form.Control style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Add free elective courses" ref={freeRef}/>
-                              </Form.Group>
+                              </Form.Group> */}
                
                               <Form.Group className="mb-3" controlId="formGrade">
-                                  <Form.Label>Grade</Form.Label>
-                                  <Form.Select style={{backgroundColor:'#C1C1C1'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}>
-                                    {/* {details.map ((grade, index) => {
-                                      if (grade.credit == this.state.json)
-                                      return grade.details.map((credits, index) => {
-                                        return <option>{credits.credit}</option>
-                                      }) */}
-                                    {/* })} */}
+                                  <Form.Label>GRADE</Form.Label>
+                                  <Form.Select  style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}>
+                                    {details.map(v => (<option key={v.id} value={v.id}>{v.grade}</option>))}
                                     </Form.Select>
                               </Form.Group> 
       
@@ -272,7 +163,8 @@ function App() {
             </div>
              );
 
-    }
+    
     }
       export default App;
      
+

@@ -11,11 +11,14 @@ const styles = {
 
 function Grade({data, setDataItems}) {
     const [dataRows, setDataRows] = useState();
+    const [dataSem,setDataTotalSem] = useState(0);
     const [dataTotal,setDataTotal] = useState(0);
 
     useEffect(() => {
         let finalScore=0;
         let total =0;
+        let sem=0;
+        let semFinal=0;
         let credit=3;
         const z= data.map((v,i) => {
 
@@ -49,19 +52,60 @@ function Grade({data, setDataItems}) {
             if (v.grade=="F"){
                 v.grade=0.0;
             }
+  
+            if (v.year=="SEMESTER 1/2020") {
+                semFinal+=v.grade * credit;
+                sem=semFinal/(credit*2);
+            }
 
+            
             finalScore+=v.grade * credit;
             total=finalScore/(credit*data.length);
+
+
+            
+            if (v.grade==4.0) {
+                v.grade="A";
+            } 
+            if (v.grade==3.75) {
+                v.grade= "A-";
+            } 
+            if (v.grade==3.25) {
+                v.grade="B+";
+            } 
+             if (v.grade==3.0) {
+                v.grade="B";
+            } 
+            if (v.grade==2.75) {
+                v.grade="B-";
+            } 
+            if (v.grade==2.25) {
+                v.grade="C+";
+            } 
+            if (v.grade==2) {
+                v.grade="C";
+            } 
+            if (v.grade==1.75) {
+                v.grade="C-";
+            } 
+            if (v.grade==1.0) {
+                v.grade="D";
+            } 
+            if (v.grade==0.0){
+                v.grade="F";
+            }
+
+
             return (
                 <tr key={i}>
                     <td style={styles.textLeft}>{v.year}</td>
-                    {/* <td style={styles.textLeft}>{v.name}</td> */}
                     <td style={styles.textLeft}>{v.subject}</td>
                     <td style={styles.textLeft}>{v.grade}</td>
                 </tr>
             );
         });
         setDataRows(z);
+        setDataTotalSem(sem);
         setDataTotal(total);
     }, [data])
 
@@ -85,15 +129,6 @@ function Grade({data, setDataItems}) {
                 </Row>
                 <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
                     <Table  style={{width:"650px"}}>
-                    {/* <thead style={{backgroundColor:'#C1C1C1', color:"#000000", borderRadius:"15px"}}>
-                        <tr>
-                            <th>Year</th>
-                            <th>Semester</th>
-                            <th>Course Code</th> 
-                            <th>Course Name</th>
-                            <th>Grade</th> 
-                        </tr>
-                    </thead> */}
                     <thead>
                         <tr> 
                             <th style={styles.textLeft}>CGPA</th>
@@ -102,6 +137,18 @@ function Grade({data, setDataItems}) {
                         </tr>
                     </thead>
                     <tbody>{dataRows}</tbody>
+                </Table>
+                </div>
+
+                <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
+                    <Table  style={{width:"650px"}}>
+                    <thead>
+                        <tr> 
+                            <th style={styles.textLeft}>CGPA</th>
+                            <th colSpan={3}></th>
+                        </tr>
+                    </thead>
+                    <tbody>{(formatNumber(dataSem))}</tbody>
                 </Table>
                 </div>
                 <Col>
@@ -117,3 +164,12 @@ function Grade({data, setDataItems}) {
 
 export default Grade;
 
+   {/* <thead style={{backgroundColor:'#C1C1C1', color:"#000000", borderRadius:"15px"}}>
+                        <tr>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>Course Code</th> 
+                            <th>Course Name</th>
+                            <th>Grade</th> 
+                        </tr>
+                    </thead> */}
