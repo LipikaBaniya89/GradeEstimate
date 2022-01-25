@@ -9,6 +9,8 @@ import useLocalStorage from 'react-localstorage-hook'
 import List from "./List";
 import jsonData from './details.json';
 
+var semCount= new Map();
+
 function App() {
   const yearRef= useRef();
   const idRef=useRef();
@@ -17,31 +19,8 @@ function App() {
   const gradeRef=useRef();
 
   const [dataItems, setDataItems] = useLocalStorage("dataItems",[]);
+  const [dataCount,setDataCount] = useLocalStorage("dataCount",[]);
   
-    const yearList = [
-      {idYear : "y001" , name: 2016},
-      {idYear : "y002" , name: 2017},
-      {idYear : "y003" , name: 2018},
-      {idYear : "y004" , name: 2019},
-      {idYear : "y005" , name: 2020},
-      {idYear : "y006" , name: 2021},
-      {idYear : "y007" , name: 2022},
-    ];
-  
-    const semList = [
-      {idSem : "s001", nameSem: 1},
-      {idSem : "s002", nameSem: 2},
-      {idSem : "s003", nameSem: 3},
-    ];
-  
-    const idList = [
-      {id: "i001", name: 1001 , subject: "BG 1001 English"},
-      {id: "i002", name: 2130, subject: "Systems Science"},
-      {id: "i003", name: 1121, subject: "Basic Mathematics and Statistics"},
-      {id: "i004", name: 1201, subject: "Computer Programming 1"},
-      {id: "i005", name: 14031, subject: "Professional Ethics Seminar 1"},
-      {id: "i006", name: 1101, subject: "Introduction To Business"},
-    ]
   
     const addItem = () => {
       if (idRef.current.value == "") {
@@ -50,7 +29,19 @@ function App() {
       }
   
     const sId= idRef.current.value
-    const subject = idList.find( e => e.id == sId)
+    const currYear= yearRef.current.value
+    // const subject = idList.find( e => e.id == sId)
+
+    if(semCount.has(currYear)) {
+      if(semCount.get(currYear) >= 7) {
+        alert("Limit reached. Cannot add more than 7 items for " + currYear);
+        return;
+      } else {
+        semCount.set(currYear, semCount.get(currYear) + 1);
+      }
+    } else {
+      semCount.set(currYear, 1);
+    }
   
     var subjectObj = {
       year: yearRef.current.value,
@@ -61,6 +52,9 @@ function App() {
   
     dataItems.push(subjectObj);
     setDataItems([...dataItems]);
+
+    dataCount.push(semCount);
+    setDataCount([...dataCount]);
     };
 
   
@@ -79,13 +73,13 @@ function App() {
               <div className="wrapper" style={{ display: 'block', width: 1000}}>
                 <Tabs className="center-alignment" defaultActiveKey="second">
                   <Tab eventKey="first" title="Add Grade" >
-                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px"}}>ADD DESIRED COURSES</h3>
+                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px", fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>ADD DESIRED COURSES</h3>
                       <div className="center-alignment" style={{backgroundColor:"#FAFAFA", marginRight:"10px", borderRadius:"15px"}}>
                         <Row>
                           <Col xs={12} >
                             <Form className="left-alignment"> 
                               <Form.Group className="mb-3" controlId="formYear">
-                                <Form.Label>YEAR</Form.Label>
+                                <Form.Label style={{fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>YEAR</Form.Label>
                                   <Form.Select 
                                     aria-label="Default select example" style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={yearRef} >
                                     {details.map (v => (<option key={v.id} value={v.id}>{v.sem}</option>))}
@@ -93,7 +87,7 @@ function App() {
                                 </Form.Group>
                 
                             <Form.Group className="mb-3" controlId="formYear">
-                              <Form.Label>COURSE ID</Form.Label>
+                              <Form.Label style={{fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>COURSE ID</Form.Label>
                                 <Form.Select 
                                   aria-label="Default select example" 
                                   style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}
@@ -112,7 +106,7 @@ function App() {
                             </Form.Group>
     
                             <Form.Group className="mb-3" controlId="formSubject">
-                                <Form.Label> COURSE NAME </Form.Label>
+                                <Form.Label style={{fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}> COURSE NAME </Form.Label>
                                 <Form.Select aria-label="Default select example" 
                                   style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={subjectRef}>
                                   {details[0].subjects.map (v => (<option key={v.id} value={v.id}>{v.name}</option>))}
@@ -132,9 +126,10 @@ function App() {
                               </Form.Group> */}
                
                               <Form.Group className="mb-3" controlId="formGrade">
-                                  <Form.Label>GRADE</Form.Label>
-                                  <Form.Select  style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} className="form-control" type="text" placeholder="Estimate your grade" ref={gradeRef}>
-                                    {details.map(v => (<option key={v.id} value={v.id}>{v.grade}</option>))}
+                                  <Form.Label style={{fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>GRADE</Form.Label>
+                                  <Form.Select aria-label="Default select example"  
+                                  style={{backgroundColor:'#C1C1C1', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}} ref={gradeRef}>
+                                    {details[8].grades.map(v=>(<option key={v.id} value = {v.id}>{v.grade}</option>))}
                                     </Form.Select>
                               </Form.Group> 
       
@@ -167,4 +162,27 @@ function App() {
     }
       export default App;
      
-
+    // const yearList = [
+    //   {idYear : "y001" , name: 2016},
+    //   {idYear : "y002" , name: 2017},
+    //   {idYear : "y003" , name: 2018},
+    //   {idYear : "y004" , name: 2019},
+    //   {idYear : "y005" , name: 2020},
+    //   {idYear : "y006" , name: 2021},
+    //   {idYear : "y007" , name: 2022},
+    // ];
+  
+    // const semList = [
+    //   {idSem : "s001", nameSem: 1},
+    //   {idSem : "s002", nameSem: 2},
+    //   {idSem : "s003", nameSem: 3},
+    // ];
+  
+    // const idList = [
+    //   {id: "i001", name: 1001 , subject: "BG 1001 English"},
+    //   {id: "i002", name: 2130, subject: "Systems Science"},
+    //   {id: "i003", name: 1121, subject: "Basic Mathematics and Statistics"},
+    //   {id: "i004", name: 1201, subject: "Computer Programming 1"},
+    //   {id: "i005", name: 14031, subject: "Professional Ethics Seminar 1"},
+    //   {id: "i006", name: 1101, subject: "Introduction To Business"},
+    // ]

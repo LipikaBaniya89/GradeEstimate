@@ -52,7 +52,6 @@ class List extends Component {
                             "code" : "CS 1201 : ",
                             "name" : "COMPUTER PROGRAMMING I ",
                             "credit" : "3 Cr",
-                            "line" : "_______________________________________________________________________________________"
                         }
                     ]
                 },
@@ -93,8 +92,7 @@ class List extends Component {
                                 "id"   : 11,
                                 "code" : "DA 2103 : ",
                                 "name" : "PRINCIPLE OF STATISTICS",
-                                "credit" : "3 Cr",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : "3 Cr"
                             }
                         ]
                     },
@@ -137,8 +135,7 @@ class List extends Component {
                                 "id"   : 17,
                                 "code" : "BG 2000 : ",
                                 "name" : "ENGLISH III ",
-                                "credit" : "3 Cr",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : "3 Cr"
                             }
                         ]
                     },
@@ -181,8 +178,7 @@ class List extends Component {
                                 "id"   : 23,
                                 "code" : "BG 2001 : ",
                                 "name" : "ENGLISH IV ",
-                                "credit" : "3 Cr",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : "3 Cr"
                             }
                         ]
                     },
@@ -225,8 +221,7 @@ class List extends Component {
                                 "id"   : 29,
                                 "code" : "IT 3230 : ",
                                 "name" : "MANAGEMENT INFORMATION SYSTEMS ",
-                                "credit" : "3 Cr",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : "3 Cr"
                             }
                         ]
                     },
@@ -243,8 +238,7 @@ class List extends Component {
                                 "id"   : 31,
                                 "code" : "CS 1022 : ",
                                 "name" : "INTRODUCTION TO PUBLIC RELATIONS ",
-                                "credit" : " 3 Cr ",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : " 3 Cr "
                             },
                         ]
                     },
@@ -287,8 +281,7 @@ class List extends Component {
                                 "id"   : 37,
                                 "code" : "GE 2202 : ",
                                 "name" : "ETHICS ",
-                                "credit" : "3 Cr",
-                                "line" : "______________________________________________________________________________________"
+                                "credit" : "3 Cr"
                             }
                         ]
                     },
@@ -328,25 +321,25 @@ class List extends Component {
     render() {
         return (      
             <div className="center-alignment" style={{backgroundColor:"#FAFAFA", marginRight:"10px", marginTop:"5px", borderRadius:"15px"}}>
-                 <h3 style={{paddingTop:"20px", paddingBottom:"10px", paddingLeft:"10px"}}>LIST OF SUBJECTS</h3>
-                {this.state.data.map((dataDetail) =>
-                <div style={{color: "F5F5F5" , marginTop:"10px", marginLeft:"30px"}}>{dataDetail.sem}
-                <ul style={{color: "F5F5F5" , marginTop:"10px",marginBottom: "20px"}}>
-                    {dataDetail.details.map((sub) =>
-                    <li style={styles.textLeft}>{sub.code} {sub.credit} <br>
-                    </br>
-                    { sub.name}<br>
-                    </br>
-                    {sub.line}
-                    </li>  
-                
-                    )
-                     
-                    }
-                </ul>
-                </div>
-                )
-            }
+                <h3>LIST OF SUBJECTS</h3>
+                <ol style={{listStyleType:"upper-roman"}}>
+                    {this.state.data.map((dataDetail) =>
+                        <li>
+                            <div style={{color: "F5F5F5" , marginTop:"10px", marginLeft:"30px", borderBottom: "1px solid grey",fontSize:"14px"}}>{dataDetail.sem}
+                                <ol style={{color: "F5F5F5" , marginTop:"10px",marginBottom: "20px",  fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>
+                                    {dataDetail.details.map((sub) =>
+                                        <li style={styles.textLeft}>{sub.code} {sub.credit} <br>
+                                            </br>
+                                            { sub.name}<br>
+                                            </br>
+                                            {sub.line}
+                                        </li>  
+                                    )}
+                                </ol>
+                            </div>
+                        </li>
+                    )}
+                </ol>
             </div>     
         )
     }
