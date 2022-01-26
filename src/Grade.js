@@ -20,6 +20,7 @@ var semCount6=new Map();
 var semCount7=new Map();
 
 
+
 function Grade({data,setDataItems}){
     const [dataRows, setDataRows] = useState();
     const [dataTotal,setDataTotal] = useState(0);
@@ -91,7 +92,8 @@ function Grade({data,setDataItems}){
             if (v.year==="SEMESTER 2/2018") {
                 semFinal+=v.grade * credit;
                 semCount.set(semFinal)
-                sem=semFinal/(credit*semCount.size);  
+                sem=semFinal/(credit*semCount.size);
+                  
             }
 
             if (v.year==="SEMESTER 1/2019") {
@@ -180,7 +182,8 @@ function Grade({data,setDataItems}){
                 </tr>
             );
         });
-        setDataRows(z);
+        // setDataRows(z);
+        setDataRows(z)
         setDataTotal(total);
 
         setDataTotalSem(sem);
@@ -220,8 +223,8 @@ function Grade({data,setDataItems}){
                     <Table  style={{width:"650px"}}>
                     <thead>
                         <tr> 
-                            <th style={styles.textRight}>CGPA </th>
-                            <th style={styles.textLeft}> :  {(formatNumber(dataTotal))}</th>
+                            <th style={styles.textLeft}>CGPA </th>
+                            <th style={styles.textLeft}>  {(formatNumber(dataTotal))}</th>
                             <th colSpan={8}></th>
                         </tr>
                     </thead>
@@ -234,7 +237,6 @@ function Grade({data,setDataItems}){
                     <thead>
                         <tr> 
                             <th style={styles.textLeft}> SEMESTER 2/2018 : {(formatNumber(dataSem))}</th>
-                           
                             <th colSpan={3}></th>
                         </tr>
                     </thead>
