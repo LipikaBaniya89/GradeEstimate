@@ -7,7 +7,9 @@ import Tab from 'react-bootstrap/Tab';
 import Grade from "./Grade";
 import useLocalStorage from 'react-localstorage-hook'
 import List from "./List";
+import Line from "./Line";
 import jsonData from './details.json';
+
 
 var semCount= new Map();
 
@@ -143,13 +145,17 @@ function App() {
                   </Tab>
                   <Tab eventKey="second" title="Study Plan">
                       <Col>
-                      <div><List/></div>
-                        
+                      <div><List/></div>  
                       </Col>
                   </Tab>
                     <Tab eventKey="third" title="Grade Estimation">
                       <Col>
                         <Grade data={dataItems} setDataItems={setDataItems}/>
+                      </Col>
+                  </Tab>
+                  <Tab eventKey="fourth" title="Progress">
+                      <Col>
+                        <div><Line/></div>
                       </Col>
                   </Tab>
                 </Tabs>

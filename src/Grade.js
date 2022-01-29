@@ -20,7 +20,6 @@ var semCount6=new Map();
 var semCount7=new Map();
 
 
-
 function Grade({data,setDataItems}){
     const [dataRows, setDataRows] = useState();
     const [dataTotal,setDataTotal] = useState(0);
@@ -174,7 +173,7 @@ function Grade({data,setDataItems}){
 
             return (
                 <tr key={i}>
-                     <td className={styles.textCenter}><FaTrash onClick={() => deleteClick(i)}/>
+                     <td className={styles.textLeft}><FaTrash onClick={() => deleteClick(i)}/>
                     </td>
                     <td style={styles.textLeft}>{v.year}</td>
                     <td style={styles.textLeft}>{v.subject}</td>
@@ -229,6 +228,7 @@ function Grade({data,setDataItems}){
                         </tr>
                     </thead>
                     <tbody>{dataRows}</tbody>
+                   
                 </Table>
                 </div>
 
@@ -237,9 +237,10 @@ function Grade({data,setDataItems}){
                     <thead>
                         <tr> 
                             <th style={styles.textLeft}> SEMESTER 2/2018 : {(formatNumber(dataSem))}</th>
-                            <th colSpan={3}></th>
+                            <th colSpan={8}></th>
                         </tr>
                     </thead>
+                  
                 </Table>
                 </div>
 
@@ -319,6 +320,7 @@ function Grade({data,setDataItems}){
                     </Button>
                 </Col>
             </Container>
+
             </div>
         );
    
@@ -335,3 +337,16 @@ export default Grade;
                             <th>Grade</th> 
                         </tr>
                     </thead> */}
+
+    
+// function groupArrayOfObjects(list, key) {
+//     return list.reduce(function(rv, x) {
+//       (rv[x[key]] = rv[x[key]] || []).push(x);
+//       return rv;
+//     }, {});
+//   };
+
+// var array=[}]
+
+// var groupedArray=groupArrayOfObjects(array,"year")
+// console.log(groupedArray.SEMESTER)
