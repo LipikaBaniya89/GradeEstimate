@@ -7,7 +7,7 @@ import { FaTrash } from 'react-icons/fa';
 const styles = {
     textCenter: {textAlign: 'center',  fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'},
     textRight: {textAlign:'right', fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'},
-    textLeft: {textAlign:'left', fontSize: '14px' ,fontFamily:'Segoe UI', color:'#525050'}
+    textLeft: {textAlign:'left', fontSize: '14px' ,fontFamily:'Segoe UI', color:'#525050', paddingLeft:"10px"}
 };
 
 var semCount= new Map();
@@ -85,6 +85,9 @@ function Grade({data,setDataItems}){
                 v.grade=1.0;
             } 
             if (v.grade==="F"){
+                v.grade=0.0;
+            }
+            if (v.grade==="W") {
                 v.grade=0.0;
             }
             
@@ -170,14 +173,16 @@ function Grade({data,setDataItems}){
             if (v.grade===0.0){
                 v.grade="F";
             }
+            if (v.grade===0.0){
+                v.grade="W";
+            }
 
             return (
-                <tr key={i}>
-                     <td className={styles.textLeft}><FaTrash onClick={() => deleteClick(i)}/>
-                    </td>
+                <tr key={i}>  
                     <td style={styles.textLeft}>{v.year}</td>
                     <td style={styles.textLeft}>{v.subject}</td>
                     <td style={styles.textLeft}>{v.grade}</td>
+                    <td style={styles.textLeft}><FaTrash onClick={() => deleteClick(i)}/></td>   
                 </tr>
             );
         });
@@ -215,29 +220,48 @@ function Grade({data,setDataItems}){
             <Container className="center-alignment">
                 <Row>
                     <Col>
-                    <h3 style={{paddingTop:"20px", paddingBottom:"10px", fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>ESTIMATE GRADE</h3>
+                    <h3 style={{paddingTop:"20px", fontSize: '18px' ,fontFamily:'Segoe UI', color:'#525050'}}>ESTIMATE GRADE</h3>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                    <h3 style={{paddingTop:"10px", paddingBottom:"10px", fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>CUMULATIVE GRADE POINT AVERAGE : </h3>
                     </Col>
                 </Row>
                 <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
                     <Table  style={{width:"650px"}}>
                     <thead>
                         <tr> 
-                            <th style={styles.textLeft}>CGPA </th>
-                            <th style={styles.textLeft}>  {(formatNumber(dataTotal))}</th>
+                            <th style={styles.textLeft}>SEMESTER</th>
+                            <th style={styles.textLeft}>COURSE</th>
+                            <th style={styles.textLeft}>GRADE</th>
                             <th colSpan={8}></th>
                         </tr>
                     </thead>
+                    <tfoot style={{color:"#808080"}}>
+                        <tr>
+                        <th style={styles.textLeft}>CGPA</th>
+                        <th style={styles.textLeft}>  {(formatNumber(dataTotal))}</th>
+                        </tr>
+                    </tfoot>
                     <tbody>{dataRows}</tbody>
                    
                 </Table>
                 </div>
 
-                <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
-                    <Table  style={{width:"650px"}}>
+                <Row>
+                    <Col>
+                    <h3 style={{paddingTop:"10px", paddingBottom:"10px", fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>GRADE EACH SEMESTER : </h3>
+                    </Col>
+                </Row>
+
+                <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"200px"}}>
+                    <Table  style={{width:"200px"}}>   
                     <thead>
                         <tr> 
                             <th style={styles.textLeft}> SEMESTER 2/2018 : {(formatNumber(dataSem))}</th>
-                            <th colSpan={8}></th>
+                            <th colSpan={4}></th>
                         </tr>
                     </thead>
                   
@@ -280,8 +304,8 @@ function Grade({data,setDataItems}){
                 </Table>
                 </div>
 
-                <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"650px"}}>
-                    <Table  style={{width:"650px"}}>
+                <div style={{backgroundColor:"#FAFAFA", borderRadius:"20px", width:"200px"}}>
+                    <Table  style={{width:"200px"}}>
                     <thead>
                         <tr > 
                         <th style={styles.textLeft}> SEMESTER 3/2020 : {(formatNumber(dataSem5))}</th>

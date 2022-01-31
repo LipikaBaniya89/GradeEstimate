@@ -29,7 +29,7 @@ class MultiLineChart extends Component {
   render() {
     return (
       <div className="container mt-5" style={{marginLeft:"350px"}}>
-        <h2>React Google Line Chart Example</h2>
+        <h2>Grade Line Chart</h2>
         <Chart
           width={'600px'}
           height={'410px'}

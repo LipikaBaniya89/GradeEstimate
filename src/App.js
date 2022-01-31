@@ -59,14 +59,20 @@ function App() {
     setDataCount([...dataCount]);
     };
 
+    const details = jsonData.faculty
+
   
     const productChange = (e) => {
+      const sId= idRef.current.value;
+      const option=details.find((e) => e.id === sId);
+      subjectRef.current.value=option.subjects.name
+
       // const sId= idRef.current.value;
       // const subject=idList.find((e) => e.id == sId);
       // subjectRef.current.value= subject.subject
     }
 
-    const details = jsonData.faculty
+   
   
       return (
         <div style={{backgroundColor: "#F5F5F5", paddingBottom:"30px"}}>
@@ -75,7 +81,7 @@ function App() {
               <div className="wrapper" style={{ display: 'block', width: 1000}}>
                 <Tabs className="center-alignment" defaultActiveKey="second">
                   <Tab eventKey="first" title="Add Grade" >
-                    <h3 className="center-alignment" style={{paddingTop:"20px", paddingBottom:"20px", fontSize: '15px' ,fontFamily:'Segoe UI', color:'#525050'}}>ADD DESIRED COURSES</h3>
+                    <h3 className="center-alignment" style={{paddingTop:"18px", paddingBottom:"20px", fontSize: '20px' ,fontFamily:'Segoe UI', color:'#525050'}}>ADD DESIRED COURSES</h3>
                       <div className="center-alignment" style={{backgroundColor:"#FAFAFA", marginRight:"10px", borderRadius:"15px"}}>
                         <Row>
                           <Col xs={12} >
